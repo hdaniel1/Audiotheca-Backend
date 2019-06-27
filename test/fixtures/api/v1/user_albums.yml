@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rating: 1
+  user_id: 1
+  review: MyString
+  listened_to: false
+  date_listened_to: 2019-06-27 17:08:30
+  spotify_id: MyString
+
+two:
+  rating: 1
+  user_id: 1
+  review: MyString
+  listened_to: false
+  date_listened_to: 2019-06-27 17:08:30
+  spotify_id: MyString
