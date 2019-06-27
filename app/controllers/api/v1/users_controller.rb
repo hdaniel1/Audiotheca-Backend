@@ -7,6 +7,7 @@ class Api::V1::UsersController < ApplicationController
         client_id: ENV["CLIENT_ID"],
         client_secret: ENV["CLIENT_SECRET"]
         }
+
         #post response body for Spotify API
         auth_response = RestClient.post('https://accounts.spotify.com/api/token', body)
 
