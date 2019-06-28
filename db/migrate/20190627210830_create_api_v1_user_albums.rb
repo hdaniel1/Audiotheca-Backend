@@ -1,6 +1,6 @@
 class CreateApiV1UserAlbums < ActiveRecord::Migration[5.2]
   def change
-    create_table :api_v1_user_albums do |t|
+    create_table :user_albums do |t|
       t.integer :rating
       t.integer :user_id
       t.string :review

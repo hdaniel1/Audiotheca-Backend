@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       get '/login', to: 'login#create'
       get '/auth/spotify/callback', to: 'users#create'
       resources :user_albums
-      resources :playlists
+      resources :playlists, only: [:index, :create, :show]
       resources :playlist_albums
     end
   end

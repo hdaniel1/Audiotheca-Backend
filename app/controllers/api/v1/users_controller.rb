@@ -19,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
         user_response = RestClient.get("https://api.spotify.com/v1/me", header)
         user_params = JSON.parse(user_response.body)
         
-        @user = Api::V1::User.find_or_create_by(spotify_id: user_params['id'])
+        @user = Api::V1::User.find_or_create_by(id: user_params['id'])
         if @user.save
           @user.update(
             access_token:auth_params["access_token"], 
