@@ -6,7 +6,6 @@ class Api::V1::PlaylistsController < ApplicationController
 
     def create 
         @playlist = Api::V1::Playlist.find_or_create_by(playlist_params)
-        
         if @playlist.save
             render json: @playlist, status: :created
         end
@@ -29,7 +28,7 @@ class Api::V1::PlaylistsController < ApplicationController
     private 
 
     def playlist_params
-        params.require(:playlist).permit(:id, :user_id, :name, :description, :image)
+        params.require(:playlist).permit(:id, :user_id, :name, :description, :playlist_image)
     end 
 
 end
