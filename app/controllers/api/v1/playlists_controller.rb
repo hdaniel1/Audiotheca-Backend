@@ -6,8 +6,11 @@ class Api::V1::PlaylistsController < ApplicationController
 
     def create 
         @playlist = Api::V1::Playlist.find_or_create_by(playlist_params)
+        
         if @playlist.save
             render json: @playlist, status: :created
+        else 
+            render json: { error: 'failed to create playlist' }, status: :not_acceptable
         end
     end 
 
