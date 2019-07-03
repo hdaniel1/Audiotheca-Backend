@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_07_01_194437) do
   create_table "playlist_albums", force: :cascade do |t|
     t.integer "user_album_id"
     t.integer "playlist_id"
+    t.string "spotify_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

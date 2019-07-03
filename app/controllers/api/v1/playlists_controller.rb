@@ -21,7 +21,7 @@ class Api::V1::PlaylistsController < ApplicationController
     def update 
         @playlist = Api::V1::Playlist.find(params[:id])
         @playlist.update(playlist_params)
-        render json: @playlist
+        render json: Api::V1::PlaylistSerializer.new(@playlist)
     end 
     
     def destroy
