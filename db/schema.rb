@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_07_01_194437) do
     t.integer "rating"
     t.integer "user_id"
     t.string "review"
-    t.boolean "listened_to"
+    t.boolean "listened_to", default: false
     t.datetime "date_listened_to"
     t.string "spotify_id"
     t.datetime "created_at", null: false
