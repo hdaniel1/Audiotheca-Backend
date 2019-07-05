@@ -22,7 +22,6 @@ class Api::V1::PlaylistAlbumsController < ApplicationController
                 end
 
             else 
-
                 @userAlbum = Api::V1::UserAlbum.create(spotify_id: params[:spotify_id], user_id: params[:user_id])
                 @playlistAlbum = Api::V1::PlaylistAlbum.create(playlist_id: playlist_album_params[:playlist_id], user_album_id: @userAlbum.id, spotify_id: playlist_album_params[:spotify_id])
 

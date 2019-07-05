@@ -5,7 +5,7 @@ class Api::V1::PlaylistsController < ApplicationController
     end
 
     def create 
-        @playlist = Api::V1::Playlist.find_or_create_by(playlist_params)
+        @playlist = Api::V1::Playlist.create(playlist_params)
         
         if @playlist.save
             render json: @playlist, status: :created
