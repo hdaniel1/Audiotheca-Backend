@@ -10,6 +10,10 @@ class Api::V1::UserAlbumsController < ApplicationController
         render json: @userAlbum
     end 
 
+    def destroy
+        render json: Api::V1::UserAlbum.find(params[:id]).destroy
+    end
+
     private 
 
     def user_album_params 
