@@ -5,7 +5,10 @@ class Api::V1::PlaylistsController < ApplicationController
     end
 
     def create 
+        @image = Cloudinary::Uploader.upload(playlist_params[:playlist_image])
         @playlist = Api::V1::Playlist.create(playlist_params)
+
+        @playlist.update(playlist_image: @image["url"])
         
         if @playlist.save
             render json: @playlist, status: :created
