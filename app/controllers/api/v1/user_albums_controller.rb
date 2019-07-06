@@ -5,17 +5,11 @@ class Api::V1::UserAlbumsController < ApplicationController
     end
 
     def update 
-        if user_album_params[:listened_to] == false
             @userAlbum = Api::V1::UserAlbum.find(user_album_params[:id])
-            @userAlbum.update(listened_to: user_album_params[:listened_to], date_listened_to: DateTime.now)
+            @userAlbum.update(listened_to: user_album_params[:listened_to], date_listened_to: DateTime.now, rating: user_album_params[:rating])
             #delete all playlist albums for the userAlbum listened to 
             Api::V1::PlaylistAlbum.where(spotify_id: params[:spotify_id]).destroy_all
             render json: @userAlbum
-        else 
-            @userAlbum = Api::V1::UserAlbum.find(user_album_params[:id])
-            @userAlbum.update(rating: user_album_params[:rating])
-            render json: @userAlbum
-        end 
     end 
 
     def destroy
