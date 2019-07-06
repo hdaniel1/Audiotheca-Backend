@@ -5,7 +5,7 @@ class Api::V1::UserAlbumsController < ApplicationController
     end
 
     def update 
-        if user_album_params[:listened_to]
+        if user_album_params[:listened_to] == false
             @userAlbum = Api::V1::UserAlbum.find(user_album_params[:id])
             @userAlbum.update(listened_to: user_album_params[:listened_to], date_listened_to: DateTime.now)
             #delete all playlist albums for the userAlbum listened to 
@@ -13,7 +13,7 @@ class Api::V1::UserAlbumsController < ApplicationController
             render json: @userAlbum
         else 
             @userAlbum = Api::V1::UserAlbum.find(user_album_params[:id])
-            @userAlbum.update(rating: user_album_params[:rating], review: user_album_params[:review])
+            @userAlbum.update(rating: user_album_params[:rating])
             render json: @userAlbum
         end 
     end 
