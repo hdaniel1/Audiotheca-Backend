@@ -23,7 +23,9 @@ class Api::V1::PlaylistsController < ApplicationController
 
     def update 
         @playlist = Api::V1::Playlist.find(params[:id])
+        @image = Cloudinary::Uploader.upload(playlist_params[:playlist_image])
         @playlist.update(playlist_params)
+        @playlist.update(playlist_image: @image["url"])
         render json: Api::V1::PlaylistSerializer.new(@playlist)
     end 
     
