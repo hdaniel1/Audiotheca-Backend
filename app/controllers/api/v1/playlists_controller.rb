@@ -22,6 +22,7 @@ class Api::V1::PlaylistsController < ApplicationController
     end 
 
     def update 
+        byebug
         @playlist = Api::V1::Playlist.find(params[:id])
         @image = Cloudinary::Uploader.upload(playlist_params[:playlist_image])
         @playlist.update(playlist_params)
