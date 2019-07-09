@@ -5,11 +5,13 @@ class Api::V1::PlaylistsController < ApplicationController
     end
 
     def create 
-        @image = Cloudinary::Uploader.upload(playlist_params[:playlist_image])
-        @playlist = Api::V1::Playlist.create(id: playlist_params[:id], name: playlist_params[:name], user_id: playlist_params[:user_id], description: playlist_params[:description])
-        
-        @playlist.update(playlist_image: @image["url"])
-        
+        if playlist_params[:playlist_image] 
+            @image = Cloudinary::Uploader.upload(playlist_params[:playlist_image])
+            @playlist = Api::V1::Playlist.create(id: playlist_params[:id], name: playlist_params[:name], user_id: playlist_params[:user_id], description: playlist_params[:description])
+            @playlist.update(playlist_image: @image["url"])
+        else 
+            @playlist = Api::V1::Playlist.create(id: playlist_params[:id], name: playlist_params[:name], user_id: playlist_params[:user_id], description: playlist_params[:description])
+        end
         if @playlist.save
             render json: @playlist, status: :created
         else 
@@ -21,12 +23,15 @@ class Api::V1::PlaylistsController < ApplicationController
         render json: Api::V1::Playlist.find(params[:id])
     end 
 
-    def update 
-        byebug
+    def update       
         @playlist = Api::V1::Playlist.find(params[:id])
-        @image = Cloudinary::Uploader.upload(playlist_params[:playlist_image])
-        @playlist.update(playlist_params)
-        @playlist.update(playlist_image: @image["url"])
+        if playlist_params[:playlist_image] 
+            @image = Cloudinary::Uploader.upload(playlist_params[:playlist_image])
+            @playlist.update(playlist_params)
+            @playlist.update(playlist_image: @image["url"])
+        else 
+            @playlist.update(playlist_params)
+        end
         render json: Api::V1::PlaylistSerializer.new(@playlist)
     end 
     
