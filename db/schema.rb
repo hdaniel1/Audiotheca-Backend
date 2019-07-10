@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_07_01_194437) do
     t.string "playlist_image"
     t.integer "user_id"
     t.string "description"
+    t.string "spotify_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
